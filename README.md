@@ -11,19 +11,19 @@ This project implements a complete pipeline for automatic **License Plate Recogn
 - Real-time video inference with FPS benchmark
 - Exported models in **ONNX** and **TensorRT** formats
 - Evaluation using precision, recall, F1-score, mAP, and Levenshtein distance
-- Python-based, runs on CPU/GPU
+- Python-based, runs on CPU/GPU and Jetson Orin Nano
 
 ---
 
 ## 📊 Dataset
 
 - **Detection Dataset**: Annotated license plates in YOLOv11 format (from Roboflow)
+
 - **Recognition Dataset**: Cropped plate images with label CSVs
 - **Preprocessing**:
   - Resized to 640x640 for detection
   - Grayscale 64x600 for recognition
   - Train/Val/Test split: 70% / 20% / 10%
-
 ---
 
 ## 🧠 Models
@@ -32,7 +32,7 @@ This project implements a complete pipeline for automatic **License Plate Recogn
 
 - Model: `yolo11s.pt` (Ultralytics)
 - Fine-tuned for 100 epochs with early stopping
-- Exported as `best_model_yolo11s.pt` and `onnx`
+- Exported as `best_model_yolo11s.pt`, `ONNX`, and `TensorRT`
 
 ### 2. Recognition – EasyOCR
 
@@ -53,14 +53,29 @@ EasyOCR loss logged manually during training.
 
 ---
 
-## ⚙️ Real-Time Performance (CPU vs GPU)
+## ⚙️ Real-Time Performance (CPU vs GPU vs TensorRT)
+
+### 💻 On HP Laptop (i7, 8GB RAM, NVIDIA GeForce MX250 4 GB)
 
 | Task                 | CPU (FPS) | GPU (FPS) |
 |----------------------|-----------|-----------|
 | Detection Only       |   1.47    |   11.18   |
-| Detection + OCR      |   1.14    |   7.33    |
+| Detection + OCR      |   0.95    |   5.05    |
 
-Tested on HP Laptop (i7, 8GB RAM, NVIDIA GeForce MX250 4 GB).
+### 🚀 On Jetson Orin Nano
+
+**Jetson Specs:**
+- GPU: NVIDIA Ampere (1024 CUDA, 32 Tensor Cores)  
+- CPU: 6-core Arm Cortex-A78AE v8.2  
+- Memory: 8GB LPDDR5  
+- Bandwidth: 102 GB/s  
+
+| Task                        | Model Type | FPS    |
+|-----------------------------|------------|--------|
+| Detection Only              | PyTorch    | 16.27  |
+| Detection Only              | TensorRT   | 35.45  |
+| Detection + OCR             | PyTorch    | 4.32   |
+| Detection + OCR             | TensorRT   | 36.31  |
 
 ---
 
@@ -78,13 +93,14 @@ Tested on HP Laptop (i7, 8GB RAM, NVIDIA GeForce MX250 4 GB).
 
 ## 📽️ Project Demo
 
-Watch the full end-to-end License Plate Recognition system in action:
+Watch the full end-to-end License Plate Recognition system in action (HP laptop):
 
 👉 [**Watch Demo on Google Drive**](https://drive.google.com/file/d/1iE0vXkGdoq38DrfTpZhSfNolg_jAUhMQ/view?usp=sharing)
+
+Watch the full end-to-end License Plate Recognition system in action (Jetson Orin Nano):
+
+👉 [**Watch Demo on Google Drive**](https://drive.google.com/file/d/10BTyXusAyAdoTPc4TRUFLbyA24M9Ubvg/view?usp=sharing)
 
 > 🔹 Real-time detection and OCR  
 > 🔹 Demo video: `demo.mp4`  
 > 🔹 Includes FPS benchmark overlays
-
-
-
