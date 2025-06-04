@@ -32,7 +32,7 @@ This project implements a complete pipeline for automatic **License Plate Recogn
 
 - Model: `yolo11s.pt` (Ultralytics)
 - Fine-tuned for 100 epochs with early stopping
-- Exported as `best_model_yolo11s.pt`, `ONNX`, and `TensorRT`
+- Exported `best_model_yolo11s.pt` to `ONNX` and `TensorRT`
 
 ### 2. Recognition – EasyOCR
 
@@ -60,7 +60,7 @@ EasyOCR loss logged manually during training.
 | Task                 | CPU (FPS) | GPU (FPS) |
 |----------------------|-----------|-----------|
 | Detection Only       |   1.47    |   11.18   |
-| Detection + OCR      |   0.95    |   5.05    |
+| Detection + OCR      |   1.14    |   7.33    |
 
 ### 🚀 On Jetson Orin Nano
 
