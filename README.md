@@ -17,9 +17,9 @@ This project implements a complete pipeline for automatic **License Plate Recogn
 
 ## 📊 Dataset
 
-- **Detection Dataset**: Annotated license plates in YOLOv11 format (from Roboflow)
+- **Detection Dataset**: Annotated license plates in YOLOv11 format [**Dataset**](https://universe.roboflow.com/new-cv-workspace/license-plate-recognition-smshh/dataset/1)
 
-- **Recognition Dataset**: Cropped plate images with label CSVs
+- **Recognition Dataset**: Cropped plate images with label CSVs [**Dataset**](https://drive.google.com/file/d/1gAO478Dmc81xr78DHSVv6yV9vurb8MMT/view?usp=sharing)
 - **Preprocessing**:
   - Resized to 640x640 for detection
   - Grayscale 64x600 for recognition
